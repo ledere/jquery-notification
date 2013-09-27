@@ -1,0 +1,9 @@
+{
+  "name": "notification",
+  "version": "",
+  "dependencies": {},
+  "devDependencies": {
+    "qunit": "~1.12.0",
+    "jquery": "~2.0.3"
+  }
+}
