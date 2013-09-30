@@ -1,15 +1,18 @@
 {
-  "name": "notification",
-  "version": "",
+  "name": "jquery-notification",
+  "version": "0.0.2",
   "description": "jQuery Notification Plugin",
   "keywords": [
-    "jquery-plugin"
+    "jquery-plugin",
+    "javascript",
+    "ui",
+    "notification"
   ],
   "homepage": "https://github.com/ledere/notification",
   "author": {
     "name": "Frank Huffener",
     "email": "frank@duckbite.nl",
-    "url": "https://github.com/ledere"
+    "url": "http://www.duckbite.nl"
   },
   "repository": {
     "type": "git",
