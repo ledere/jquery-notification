@@ -16,7 +16,7 @@ In your web page:
 <script src="dist/notification.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+  $.notification({ "text" : "awesome" }); // "awesome notification"
 });
 </script>
 ```
