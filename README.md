@@ -1,4 +1,4 @@
-# jQuery Notification Plugin
+# jQuery Notification Plugin [![Build Status](https://travis-ci.org/ledere/jquery-notification.png)](https://travis-ci.org/ledere/jquery-notification)
 
 Plugin that can display all sorts of user notification in a HTML5 client
 
