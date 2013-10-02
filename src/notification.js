@@ -7,32 +7,62 @@
  */
 
 (function ($) {
+    
+    // default settings
+     var oDefaults = {
+        style: 'toast',
+        cssClass: 'fh-notification', // override the css class to use your own styling
+        text: '',
+        autoHide: true,
+        autoHideDelay: 2000, // in milliseconds
+        animationSpeed: 500 // in milliseconds
+     };
+    
+    var self = {};
+    
+    self.show = function($elem, oData) {
+    
+        // Create the message
+        var $message = $("<div></div>").addClass(oData.cssClass);
+        var $text = $("<p></p>").text(oData.text);
+        $text.appendTo($message);
 
-  // Collection method.
-  $.fn.awesome = function () {
-    return this.each(function (i) {
-      // Do something awesome to each selected element.
-      $(this).html('awesome' + i);
-    });
-  };
+        /*
+         * Toast message
+         * Yeah, it's awesome
+         */
+        if(oData.style === "toast") {
+            $message.addClass("toast").appendTo($elem).fadeIn(oData.animationSpeed, function() {
+                if(oData.autoHide) {
+                    // hide the message
+                    $(this).delay(oData.autoHideDelay).fadeOut(oData.animationSpeed, function() {
+                        $(this).remove();
+                    });
 
-  // Static method.
-  $.awesome = function (options) {
-    // Override default options with passed-in options.
-    options = $.extend({}, $.awesome.options, options);
-    // Return something awesome.
-    return 'awesome' + options.punctuation;
-  };
+                } else {
+                    // bind click to hide the message, etc, etc
+                    $message.addClass("clickable").one("click", function() {
+                        $(this).fadeOut(oData.animationSpeed, function() {
+                            $(this).remove();
+                        });
+                    });
+                }
+            });
+        }
+        
+        
+    };
 
-  // Static method default options.
-  $.awesome.options = {
-    punctuation: '.'
-  };
+    // Collection method.
+    $.fn.notification = function (oData) {
+        // extend detauls options
+        oData = $.extend({}, oDefaults, oData);
+        return this.each(function () {
+            if (oData.text) {
+                self.show($(this), oData);
+            }
+        });
+    };
 
-  // Custom selector.
-  $.expr[':'].awesome = function (elem) {
-    // Is this element awesome?
-    return $(elem).text().indexOf('awesome') !== -1;
-  };
 
 }(jQuery));
