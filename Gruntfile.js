@@ -22,17 +22,21 @@ module.exports = function (grunt) {
         banner: '<%= banner %>',
         stripBanners: true
       },
-      dist: {
+      js: {
         src: ['src/<%= pkg.name %>.js'],
         dest: 'dist/jquery.<%= pkg.name %>.js'
+      },
+      css: {
+        src: ['src/<%= pkg.name %>.css'],
+        dest: 'dist/jquery.<%= pkg.name %>.css'
       }
     },
     uglify: {
       options: {
         banner: '<%= banner %>'
       },
-      dist: {
-        src: '<%= concat.dist.dest %>',
+      js: {
+        src: '<%= concat.js.dest %>',
         dest: 'dist/jquery.<%= pkg.name %>.min.js'
       }
     },
@@ -97,7 +101,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
-  grunt.registerTask('default', ['test', 'clean', 'concat', 'uglify']);
+  grunt.registerTask('default', ['test', 'build']);
   grunt.registerTask('server', ['connect', 'watch']);
   grunt.registerTask('test', ['jshint', 'connect', 'qunit']);
+  grunt.registerTask('build', ['clean', 'concat', 'uglify']);
 };
