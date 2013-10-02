@@ -17,23 +17,9 @@
 	<!-- Removing access to jQuery and $. But it'll still be available as _$, if
 	you REALLY want to mess around with jQuery in the console. REMEMBER WE
 	ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
-	<script>
-	
-	//window._$ = jQuery.noConflict(true);
-
-	$(document).ready(function() {
-		
-		$(this).find("button#showMessage").on("click", function() {
-			$(document).find("body").notification({"text" : "hello world", autoHide: false});
-		});
-
-	});
-
-	</script>
+	<script>window._$ = jQuery.noConflict(true);</script>
 	</head>
 	<body>
-
-	<button id="showMessage">Show Message</button>
 
 	<div id="qunit"></div>
 	<div id="qunit-fixture">
