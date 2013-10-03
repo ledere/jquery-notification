@@ -1,29 +1,31 @@
 /*
  * notification
- * 
+ *
  *
  * Copyright (c) 2013 Frank Huffener
  * Licensed under the MIT license.
  */
 
 (function ($) {
-    
+
     // default settings
      var oDefaults = {
-        style: 'toast',
-        cssClass: 'fh-notification', // override the css class to use your own styling
-        text: '',
-        autoHide: true,
-        autoHideDelay: 2000, // in milliseconds
-        animationSpeed: 500 // in milliseconds
+        style: 'toast',                     // message style (toast (default), lightbox, console, debug, status)
+        type: 'none',                       // type of message (none (default), info, warning, error, alert, debug)
+        cssPrefix: 'fh',                    // override the css prefix to match your projects prefix
+        cssClass: 'notification',           // override the css class to use your own styling
+        text: '',                           // text to display (should be empty by default)
+        autoHide: true,                     // wether or not the message hides automatically (default: true)
+        autoHideDelay: 2000,                // time after which the message hides automatically (in milliseconds)
+        animationSpeed: 500                 // speed of the animation (in milliseconds)
      };
-    
+
     var self = {};
-    
+
     self.show = function($elem, oData) {
-    
+
         // Create the message
-        var $message = $("<div></div>").addClass(oData.cssClass);
+        var $message = $("<div></div>").addClass( "".concat(oData.cssPrefix, "-", oData.cssClass) );
         var $text = $("<p></p>").text(oData.text);
         $text.appendTo($message);
 
@@ -49,8 +51,8 @@
                 }
             });
         }
-        
-        
+
+
     };
 
     // Collection method.

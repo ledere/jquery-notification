@@ -12,20 +12,48 @@
 	<!-- Load local lib and tests. -->
 	<script src="../src/notification.js"></script>
 	<script src="notification_test.js"></script>
-	
+
 
 	<!-- Removing access to jQuery and $. But it'll still be available as _$, if
 	you REALLY want to mess around with jQuery in the console. REMEMBER WE
 	ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
-	<script>window._$ = jQuery.noConflict(true);</script>
+	<script>
+	window._$ = jQuery.noConflict(true);
+
+	_$(document).ready(function() {
+		_$("body").find(".fh-button").on("click", function(oEvent) {
+
+			oData = {"text":oEvent.type};
+
+			switch ( _$(this).attr("data-action") ) {
+				case "toast":
+					oData = _$.extend(oData, {"style" : "toast"});
+					break;
+				case "toast_persistent":
+					oData = _$.extend(oData, {"style" : "toast", "autoHide": false});
+					break;
+				default:
+					console.log("no valid data-action found");
+
+			}
+
+			_$("body").notification(oData);
+		});
+	});
+
+
+	</script>
 	</head>
 	<body>
 
-	<div id="qunit"></div>
-	<div id="qunit-fixture">
-	<span>lame test markup</span>
-	<span>normal test markup</span>
-	<span>awesome test markup</span>
-	</div>
+	<input type="button" class="fh-button" data-action="toast" value="toast" />
+	<input type="button" class="fh-button" data-action="toast_persistent" value="toast_persistent" />
+
+		<div id="qunit"></div>
+		<div id="qunit-fixture">
+			<span>lame test markup</span>
+			<span>normal test markup</span>
+			<span>awesome test markup</span>
+		</div>
 	</body>
 </html>
